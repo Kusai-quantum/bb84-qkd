@@ -38,3 +38,76 @@ The jump from 0% to 25% when Eve listens is the entire point of BB84: any eavesd
 git clone https://github.com/Kusai-quantum/bb84-qkd.git
 cd bb84-qkd
 pip install -r requirements.txt
+```
+
+## Usage
+
+**Basic run (no eavesdropper):**
+```bash
+python bb84.py
+```
+
+**Simulate an eavesdropper:**
+```bash
+python bb84.py --eavesdrop
+```
+
+**Add 5% channel noise:**
+```bash
+python bb84.py --noise 0.05
+```
+
+**Full pipeline (sift → correct → amplify):**
+```bash
+python bb84.py --noise 0.05 --correct --amplify
+```
+
+**Generate the QBER plot:**
+```bash
+python bb84.py --plot
+```
+
+**Run the animation (creates `bb84_animation.gif`):**
+```bash
+python animate.py
+```
+
+**Run the test suite:**
+```bash
+pytest test_bb84.py -v
+```
+
+## How it works
+
+### 1. The exchange
+Alice picks a random bit and a random basis (Z or X) for each qubit, encodes it, and sends it to Bob. Bob measures in a randomly chosen basis.
+
+### 2. Sifting
+Alice and Bob publicly compare their bases (never their bits). Bits where the bases matched form the **sifted key**.
+
+### 3. Eavesdropper detection (QBER)
+If Eve intercepts and re-sends qubits, she guesses the wrong basis 50% of the time, causing Bob to get a random result 50% of those times. Result: **~25% QBER** — far above the 11% security threshold.
+
+### 4. Cascade error correction
+Alice and Bob use public parity comparisons and binary search to locate and fix residual errors — without ever revealing the key.
+
+### 5. Privacy amplification
+Both parties hash their key with SHA-256, compressing it into a shorter string that Eve has essentially zero information about.
+
+## Tech Stack
+
+- Python 3.10+
+- Qiskit 1.x + Qiskit Aer
+- NumPy, Matplotlib, Pillow
+- Pytest for unit testing
+- GitHub Actions for CI
+
+## References
+
+- Bennett, C. H., & Brassard, G. (1984). *Quantum cryptography: Public key distribution and coin tossing.*
+- Shor, P. W., & Preskill, J. (2000). *Simple proof of security of the BB84 quantum key distribution protocol.*
+- Qiskit documentation: https://qiskit.org
+
+## License
+
+MIT
