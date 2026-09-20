@@ -4,6 +4,12 @@ A Python + Qiskit simulation of the **BB84 quantum key distribution protocol**, 
 
 ![QBER plot](qber_plot.png)
 
+## Live Simulation
+
+![BB84 Animation](bb84_animation.gif)
+
+*The dot travels from Alice to Bob. When Eve (the red X in the middle) intercepts and guesses the wrong basis, the dot turns red, and the QBER climbs toward 25%.*
+
 ## Motivation
 
 Today's financial infrastructure relies on RSA and elliptic-curve cryptography — both broken by a sufficiently large quantum computer running Shor's algorithm. QKD is a physics-based alternative: security comes from the **no-cloning theorem** and the **measurement-disturbance principle**, not from computational hardness.
