@@ -30,6 +30,7 @@ This project simulates BB84 end-to-end to demonstrate how banks could detect an 
 - ✅ **Interactive animation** showing the protocol in real time (`animate.py`)
 - ✅ **13 unit tests** covering every stage of the pipeline
 - ✅ **GitHub Actions CI** running tests on every push
+- ✅ **PNS attack simulation** and **decoy-state defense** (advanced quantum attack)
 
 ## Results
 
