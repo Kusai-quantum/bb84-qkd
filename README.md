@@ -41,6 +41,10 @@ This project simulates BB84 end-to-end to demonstrate how banks could detect an 
 | Eavesdropper (intercept-resend) | ~25% |
 | Security threshold | 11% |
 
+### Advanced attack: Photon-Number-Splitting
+
+Real lasers sometimes emit 2+ photons per pulse. Eve can steal one from each multi-photon pulse, learn the key bit, and introduce *zero* QBER — invisible to standard BB84. This repo includes a simulation of the attack and the decoy-state defense that detects it. See `pns_attack.py` and `pns_decoy.png`.
+
 The jump from 0% to 25% when Eve listens is the entire point of BB84: any eavesdropper is detectable.
 
 ## Installation
