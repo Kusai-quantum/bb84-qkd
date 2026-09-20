@@ -1,5 +1,9 @@
 # BB84 Quantum Key Distribution Simulation
 
+[![Tests](https://github.com/Kusai-quantum/bb84-qkd/actions/workflows/tests.yml/badge.svg)](https://github.com/Kusai-quantum/bb84-qkd/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![Qiskit](https://img.shields.io/badge/Qiskit-1.x-purple.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 A Python + Qiskit simulation of the **BB84 quantum key distribution protocol**, with eavesdropper detection, Cascade error correction, and privacy amplification.
 
 ![QBER plot](qber_plot.png)
