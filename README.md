@@ -35,7 +35,7 @@ This project simulates BB84 end-to-end to demonstrate how banks could detect an 
 - ✅ **PNS attack simulation** and **decoy-state defense** (advanced quantum attack)
 - ✅ **Real IBM Quantum hardware validation** on the 156-qubit `ibm_fez` processor
 - ✅ **Interactive animation** showing the protocol in real time (`animate.py`)
-- ✅ **13 unit tests** covering every stage of the pipeline
+- ✅ **12 unit tests** covering every stage of the pipeline
 - ✅ **GitHub Actions CI** running tests on every push
 
 ## Results
