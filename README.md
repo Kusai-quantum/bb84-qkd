@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![Qiskit](https://img.shields.io/badge/Qiskit-1.x-purple.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-A Python + Qiskit simulation of the **BB84 quantum key distribution protocol**, with eavesdropper detection, Cascade error correction, and privacy amplification.
+> **Hardware-validated on IBM Quantum.** Core BB84 physics reproduced on the 156-qubit `ibm_fez` processor (IBM Quantum). Same-basis measurements showed 97–98% fidelity; different-basis measurements showed the expected ~50/50 randomness. See `real_hardware.py` and [job danvr3v8gn2s739n6ug0](https://quantum.ibm.com/jobs/danvr3v8gn2s739n6ug0).
 
 ![QBER plot](qber_plot.png)
 
