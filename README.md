@@ -141,6 +141,19 @@ The core physics is validated on IBM's `ibm_fez` superconducting processor. Same
 - Pytest for unit testing
 - GitHub Actions for CI
 
+## Limitations & Future Work
+
+**Current limitations:**
+- The simulation uses an idealized noise model. Real fiber channels include dark counts, detector inefficiency, and polarization drift.
+- Cascade is a simplified version — production systems use multi-pass Cascade with optimized block sizes.
+- The PNS analysis is illustrative, not a full security proof.
+
+**Possible extensions:**
+- Implement the **E91** entanglement-based protocol for comparison.
+- Add **finite-key analysis** for realistic key-rate bounds.
+- Integrate with a real QKD testbed (e.g., ID Quantique) for hardware validation.
+- Explore **post-quantum cryptography** (lattice-based schemes) as an alternative approach.
+
 ## References
 
 - Bennett, C. H., & Brassard, G. (1984). *Quantum cryptography: Public key distribution and coin tossing.*
