@@ -120,4 +120,4 @@ Both parties hash their key with SHA-256, compressing it into a shorter string t
 
 ## License
 
-MIT
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
