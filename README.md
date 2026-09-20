@@ -4,7 +4,12 @@
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![Qiskit](https://img.shields.io/badge/Qiskit-1.x-purple.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 > **Hardware-validated on IBM Quantum.** Core BB84 physics reproduced on the 156-qubit `ibm_fez` processor (IBM Quantum). Same-basis measurements showed 97–98% fidelity; different-basis measurements showed the expected ~50/50 randomness. See `real_hardware.py` and [job danvr3v8gn2s739n6ug0](https://quantum.ibm.com/jobs/danvr3v8gn2s739n6ug0).
+
+📝 Read the full write-up on Medium: [I Built Quantum Cryptography in Python — And Caught an Eavesdropper in the Act](https://medium.com/@kossayalnasser1200/i-built-quantum-cryptography-in-python-and-caught-an-eavesdropper-in-the-act-072031575137)
+
+A Python + Qiskit simulation of the **BB84 quantum key distribution protocol**, with eavesdropper detection, Cascade error correction, privacy amplification, and hardware validation on real IBM quantum processors.
 
 ![QBER plot](qber_plot.png)
 
@@ -27,10 +32,11 @@ This project simulates BB84 end-to-end to demonstrate how banks could detect an 
 - ✅ **Channel noise simulation** (bit-flip probability)
 - ✅ **Cascade error correction** to fix errors in the sifted key
 - ✅ **Privacy amplification** via SHA-256 to compress the key against Eve's knowledge
+- ✅ **PNS attack simulation** and **decoy-state defense** (advanced quantum attack)
+- ✅ **Real IBM Quantum hardware validation** on the 156-qubit `ibm_fez` processor
 - ✅ **Interactive animation** showing the protocol in real time (`animate.py`)
 - ✅ **13 unit tests** covering every stage of the pipeline
 - ✅ **GitHub Actions CI** running tests on every push
-- ✅ **PNS attack simulation** and **decoy-state defense** (advanced quantum attack)
 
 ## Results
 
@@ -41,11 +47,15 @@ This project simulates BB84 end-to-end to demonstrate how banks could detect an 
 | Eavesdropper (intercept-resend) | ~25% |
 | Security threshold | 11% |
 
+The jump from 0% to 25% when Eve listens is the entire point of BB84: any eavesdropper is detectable.
+
 ### Advanced attack: Photon-Number-Splitting
 
-Real lasers sometimes emit 2+ photons per pulse. Eve can steal one from each multi-photon pulse, learn the key bit, and introduce *zero* QBER — invisible to standard BB84. This repo includes a simulation of the attack and the decoy-state defense that detects it. See `pns_attack.py` and `pns_decoy.png`.
+Real lasers sometimes emit 2+ photons per pulse. Eve can steal one from each multi-photon pulse, learn the key bit, and introduce *zero* QBER — invisible to standard BB84. This repo includes a simulation of the attack and the decoy-state defense that detects it.
 
-The jump from 0% to 25% when Eve listens is the entire point of BB84: any eavesdropper is detectable.
+![PNS Decoy](pns_decoy.png)
+
+See `pns_attack.py` for details.
 
 ## Installation
 
@@ -87,6 +97,17 @@ python bb84.py --plot
 python animate.py
 ```
 
+**Simulate the PNS attack and decoy-state defense:**
+```bash
+python pns_attack.py
+```
+
+**Validate core BB84 physics on real IBM Quantum hardware:**
+```bash
+python real_hardware.py
+```
+*(Requires an IBM Quantum account and a `.env` file with `IBM_QUANTUM_TOKEN=...`. See `test_ibm.py` for a connection test.)*
+
 **Run the test suite:**
 ```bash
 pytest test_bb84.py -v
@@ -109,11 +130,14 @@ Alice and Bob use public parity comparisons and binary search to locate and fix 
 ### 5. Privacy amplification
 Both parties hash their key with SHA-256, compressing it into a shorter string that Eve has essentially zero information about.
 
+### 6. Real hardware validation
+The core physics is validated on IBM's `ibm_fez` superconducting processor. Same-basis measurements return Bob's bit with ~97–98% fidelity (the missing ~2% is real quantum decoherence). Different-basis measurements are random, as predicted.
+
 ## Tech Stack
 
 - Python 3.10+
-- Qiskit 1.x + Qiskit Aer
-- NumPy, Matplotlib, Pillow
+- Qiskit 1.x + Qiskit Aer + Qiskit IBM Runtime
+- NumPy, SciPy, Matplotlib, Pillow
 - Pytest for unit testing
 - GitHub Actions for CI
 
